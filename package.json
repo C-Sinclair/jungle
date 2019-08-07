@@ -2,18 +2,8 @@
   "name": "jungle",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@types/react": "^16.8.25",
-    "@types/react-dom": "^16.8.5",
-    "create-react-app-parcel-typescript": "0.0.5",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
   "scripts": {
-    "start": "react-scripts-parcel start",
-    "build": "react-scripts-parcel build",
-    "test": "react-scripts-parcel test --env=jsdom",
-    "eject": "react-scripts-parcel eject"
+    "start": "parcel src/index.html"
   },
   "browserslist": {
     "development": [
@@ -27,5 +17,19 @@
       "Firefox ESR",
       "not ie < 11"
     ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@types/react": "^16.8.25",
+    "@types/react-dom": "^16.8.5",
+    "firebase": "^6.3.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-icons": "^3.7.0"
+  },
+  "devDependencies": {
+    "babel-preset-react-app": "^9.0.0",
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.5.3"
   }
 }
