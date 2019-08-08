@@ -4,15 +4,12 @@ import { IoMdMenu as MenuIcon } from 'react-icons/io'
 import ProfileImage from './ProfileImage'
 import Timer from './Timer'
 
-const Header = () => {
-    const [ elapsed, setElapsed ] = useState(0)
-    return (
+const Header = () => (
         <header>
             <MenuIcon />
             <ProfileImage />
-            <Timer elapsed={elapsed}/>
+            <Timer />
         </header>
-    )
-}
+)
 
 export default Header

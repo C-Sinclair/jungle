@@ -1,17 +1,26 @@
-import firebase from 'firebase/app'
+import "firebase/auth";
+import "firebase/firestore"
 
-const app = firebase.app()
+import firebase from 'firebase/app'
+import { authState } from 'rxfire/auth'
+import { collectionData } from 'rxfire/firestore'
+import { filter } from 'rxjs/operators'
+
+
+const app = firebase.initializeApp({
+
+})
+
+const firestore = firebase.firestore(app)
 const auth = firebase.auth(app)
-// const db = firebase.database()
-// const messaging = firebase.messaging()
-// const storage = firebase.storage()
+const loggedIn$ = authState(auth).pipe(filter(user => !!user))
 
 export { 
     app, 
     auth, 
-    // db, 
-    // messaging, 
-    // storage 
+    firestore, 
+    collectionData,
+    loggedIn$
 }
 
 export default firebase
