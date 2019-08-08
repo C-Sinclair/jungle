@@ -2,9 +2,9 @@ import * as React from 'react'
 import { useState } from 'react'
 import './App.sass'
 import Header from './Header'
-import SignIn from './SignIn'
 import Canvas from './Canvas'
 import { firestore, loggedIn$ } from '../Firebase'
+import AuthCentre from './auth/AuthCentre'
 
 const App = () => {
     const [ user, setUser ] = useState({})
@@ -25,10 +25,12 @@ const App = () => {
     return (
         <main>
           <Header />
-          <SignIn 
-            user={user}
-            setUser={setUser}
-            authHandler={authHandler} />
+          { !user && (
+              <AuthCentre
+                user={user}
+                setUser={setUser}
+                authHandler={authHandler} />
+          )}
           <Canvas />
         </main>
     )
