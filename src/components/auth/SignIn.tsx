@@ -16,17 +16,12 @@ const SignIn = props => {
     })
 
     const signIn = () => {
-        const observable = Observ
-        
-        from(
+        const observable = from(
             auth.signInWithEmailAndPassword(userInput.email, userInput.password)
         )
         observable
-            .pipe(
-                do(() => setLoading(true))
-                delay(1500)
-            )
             .subscribe(
+                
                 user => {
 
                 },

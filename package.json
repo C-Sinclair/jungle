@@ -37,6 +37,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "parcel-bundler": "^1.12.3",
+    "sass": "^1.22.9",
     "typescript": "^3.5.3"
   }
 }
