@@ -24,7 +24,7 @@ const App = () => {
     
     return (
         <main>
-          <Header />
+          {/* <Header /> */}
           { !user && (
               <AuthCentre
                 user={user}

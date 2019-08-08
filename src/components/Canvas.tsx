@@ -1,43 +1,66 @@
 import * as React from 'react'
 import { useState } from 'react'
+import { timer } from 'rxjs';
 
 const Canvas = () => {
 
-    const [ times, setTimes ] = useState({
-        moonHours: 0,
-        moonMins: 0,
-        moonSecs: 0
-    })
+    const moonMillisecond = 29.53059
 
     // need to better calculate the start of the lunar day
-    const calculate = () => {
-        let now = new Date()
-        let midnight = new Date(
-            now.getFullYear(),
-            now.getMonth(),
-            now.getDate(),
-            0, 0, 0
-        )
-        let earthSeconds = now.getTime() - midnight.getTime()
-        let moonSeconds = earthSeconds / 27.322 
 
-        let secs = moonSeconds.toFixed(0).slice(-2)
-        let mins = (moonSeconds / 60).toFixed(0).slice(-2)
-        let hours = (moonSeconds / 3600).toFixed(0).slice(-2)
-        
-        setTimes({
-            moonHours: parseInt(hours),
-            moonMins: parseInt(mins),
-            moonSecs: parseInt(secs)
-        })
+    let now = new Date()
+    let midnight = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        0, 0, 0
+    )
+    let earthSeconds = now.getTime() - midnight.getTime()
+
+    const [ moonMillis, setTimes ] = useState(0)
+
+    const calculate = elapsed => {
+        let millis = earthSeconds / moonMillisecond + elapsed
+        console.log(millis)
+        setTimes(millis)
     }
 
-    calculate()
+    const TimeH1 = () => {
+
+        console.log(moonMillis)
+    
+        let milliseconds = (moonMillis % 1000) / 100,
+            seconds = Math.floor((moonMillis / 1000) % 60),
+            minutes = Math.floor((moonMillis / (1000 * 60)) % 60),
+            hours = Math.floor((moonMillis / (1000 * 60 * 60)) % 24);
+    
+        console.log(`${(hours < 10) ? "0" + hours : hours}
+        :
+        ${(minutes < 10) ? "0" + minutes : minutes}
+        :
+        ${(seconds < 10) ? "0" + seconds : seconds}
+        :
+        ${milliseconds}`)
+    
+        return (
+            <h1>
+                {(hours < 10) ? "0" + hours : hours}
+                :
+                {(minutes < 10) ? "0" + minutes : minutes}
+                :
+                {(seconds < 10) ? "0" + seconds : seconds}
+                :
+                {milliseconds}
+            </h1>
+        ) 
+    }
+    
+    timer(moonMillisecond).subscribe(n => calculate(n + 1))
 
     return (
         <section className="content">
             <label>The Moon Time is</label>
-            <h1>{ `${times.moonHours}:${times.moonMins}:${times.moonSecs}` }</h1>
+            <TimeH1 />    
         </section>
     )
 }
