@@ -1,4 +1,4 @@
-import 'react'
+import * as React from 'react'
 
 interface TimerProps {
     elapsed: number

@@ -1,4 +1,4 @@
-import 'react'
+import * as React from 'react'
 import { useState } from 'react'
 import { IoMdMenu as MenuIcon } from 'react-icons/io'
 import ProfileImage from './ProfileImage'

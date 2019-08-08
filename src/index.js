@@ -1,10 +1,8 @@
-import { authState } from 'rxfire/auth'
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import * as React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/App'
+import * as serviceWorker from './serviceWorker'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))
 
-serviceWorker.register();
+serviceWorker.register()

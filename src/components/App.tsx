@@ -1,7 +1,7 @@
-import 'react'
-import './App.css'
-import Header from './components/Header'
-import Canvas from './components/Canvas'
+import * as React from 'react'
+import './App.sass'
+import Header from './Header'
+import Canvas from './Canvas'
 
 const App = () => {
     return (

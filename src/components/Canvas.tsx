@@ -1,4 +1,4 @@
-import 'react'
+import * as React from 'react'
 
 const Canvas = () => {
     return (
