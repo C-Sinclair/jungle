@@ -1,9 +1,12 @@
 import * as React from 'react'
 import { useState } from 'react'
+import { Router } from '@reach/router'
 import './App.sass'
 import Header from './Header'
-import Canvas from './Canvas'
-import { firestore, loggedIn$ } from '../Firebase'
+import Hallway from '../rooms/Hallway'
+import MoonRoom from '../rooms/moon'
+import SoilRoom from '../rooms/soil'
+import { db, loggedIn$ } from '../Firebase'
 import AuthCentre from './auth/AuthCentre'
 
 const App = () => {
@@ -16,8 +19,7 @@ const App = () => {
     loggedIn$.subscribe(user => {
       authHandler({ user })
       const { name } = user 
-      firestore
-        .collection('users')
+      db.collection('users')
         .doc(user.uuid)
         .set({ name, lastLogin: new Date() })
     })
@@ -25,13 +27,19 @@ const App = () => {
     return (
         <main>
           {/* <Header /> */}
-          { !user && (
+
+          { !user ? (
               <AuthCentre
                 user={user}
                 setUser={setUser}
                 authHandler={authHandler} />
+          ) : (
+            <Router>
+              <Hallway path="/" />
+              <MoonRoom path="/moon" />
+              <SoilRoom path="/soil" />
+            </Router>
           )}
-          <Canvas />
         </main>
     )
 }

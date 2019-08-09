@@ -18,14 +18,18 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig)
 
-const firestore = firebase.firestore(app)
+const db = firebase.firestore(app)
+db.settings({
+    timestampsInSnapshots: true    
+})
+
 const auth = firebase.auth(app)
 const loggedIn$ = authState(auth).pipe(filter(user => !!user))
 
 export { 
     app, 
     auth, 
-    firestore, 
+    db, 
     collectionData,
     loggedIn$
 }
